@@ -1,5 +1,6 @@
 #!/bin/bash
 #author Sun Ying
+# show git to Dora
 #date:2015-12-17
 if [ $# -lt 1 ];then
 	echo -e "\033[34mUsage: `basename $0` -h|--help for help\033[0m"
