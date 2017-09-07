@@ -1,7 +1,6 @@
 #!/bin/bash
 #author Sun Ying
-# show git to Dora
-#date:2015-12-17
+#update:2017-09-07
 if [ $# -lt 1 ];then
 	echo -e "\033[34mUsage: `basename $0` -h|--help for help\033[0m"
 	exit 0
@@ -140,7 +139,7 @@ Sign_v3(){
 			touch $DIR_F/serial
 			echo 01 > $DIR_F/serial
 		fi
-		openssl ca -extensions v3_ca -passin pass:$PASSWORD -in $temp -config /root/ca.config -days $S_DAYS -out ${temp}_V3.crt  -batch  >>/tmp/CA/$ERRLOG 2>&1
+		openssl ca -extensions v3_ca -preserveDN -passin pass:$PASSWORD -in $temp -config /root/ca.config -days $S_DAYS -out ${temp}_V3.crt  -batch  >>/tmp/CA/$ERRLOG 2>&1
 		if [ $? -eq 0 ];then
 			echo -e "Create the cert file on ${temp}_V3.crt \033[033msuccess\033[0m"
 		else
@@ -158,7 +157,7 @@ Trans_key(){
 		openssl rsa -passin pass:$PASSWORD -in $temp -out ${temp}.key
 		echo -e "Create the ${temp}.key \033[033msuccess\033[0m"
 	else 
-		echo -e "\033[32mYou must assign a CSR file with parameter -t|--trans\033[0m"
+		echo -e "\033[32mYou must assign a cert file with parameter -t|--trans\033[0m"
 		exit 5
 	fi
 	
@@ -240,19 +239,16 @@ case $1 in
 		;;
 	-v|--verfiy)
 			temp=$2
-			temp=${temp:-null}
 			V_Key
 			shift 2
 		;;		
 	-i|--identify)
 			temp=$2
-			temp=${temp:-null}
 			V_Csr
 			shift 2
 		;;
 	-k|--check)
 			temp=$2
-			temp=${temp:-null}
 			V_Cert	
 			shift 2
 		;;

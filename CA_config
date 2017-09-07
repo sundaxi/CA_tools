@@ -1,0 +1,29 @@
+############configuration for the server side###########
+##define private Key password
+PASSWORD=1234
+##define the valid days
+DAYS=3650
+##define the DN info
+CO_S=CN
+ST_S=BJ
+LO_S=BJ
+OG_S=Centos
+OU_S=Linux
+HS_S=yinsun.microsoft.com
+##define the Private Key Path
+P_Key=/etc/pki/CA/private/cakey.pem
+##define the CA Path
+CACERT=/etc/pki/CA/cacert.pem
+
+# Define the key size 
+M_SIZE=2048
+
+############configuration for the request CSR############
+##define the DN info########
+CO_C=CN
+ST_C=LN
+LO_C=DL
+OG_C=server
+OU_C="Operation System"
+HS_C=server.example.com
+
