@@ -3,8 +3,7 @@
 Table of Contents
 =================
 
-      * [Introduction](#introduction)
-      * [Usage](#usage)
+
 
 
 [TOC]
@@ -12,6 +11,12 @@ Table of Contents
 ## Introduction 
 
 It's a simple shell script which used to generate self-sign certificate 
+
+## Pull the tools
+
+```
+git clone git@github.com:sundaxi/CA_tools.git
+```
 
 ## Usage 
 
@@ -63,13 +68,7 @@ OU_C="Operation System"
 HS_C=server.example.com
 ```
 
-##Pull the tools
-
-```
-git clone git@github.com:sundaxi/CA_tools.git
-```
-
-##Create Self Signed Certificate
+##Create Self Sign certificate
 
 Generate private key
 
