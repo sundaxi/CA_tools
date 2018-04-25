@@ -1,12 +1,6 @@
 # Certificate Sign Tools
 
-Table of Contents
-=================
-
-   * [Certificate Sign Tools](#azure-encryption-breakfix)
-      * [Introduction](#Introduction)
-      * [Pull the tools](#Pull the tools)
-      * [Usage](#Usage)
+[TOC]
 
 ## Introduction
 
