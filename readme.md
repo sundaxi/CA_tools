@@ -3,11 +3,11 @@
 Table of Contents
 =================
 
-   * [Certificate Sign Tools](#azure-encryption-breakfix)
-      * [Introduction](#Introduction)
-      * [Pull the tools](#Pull the tools)
-      * [Usage](#Usage)
-      * [Create Self Sign certificate](#Create Self Sign certificate)
+- [Certificate Sign Tools](#azure-encryption-breakfix)
+  * [Introduction](#Introduction)
+  * [Pull the tools](#Pull the tools)
+  * [Usage](#Usage)
+  * [Create Self Sign certificate](#Create Self Sign certificate)
 
 ## Introduction
 
