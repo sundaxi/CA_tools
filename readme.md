@@ -1,88 +1,55 @@
-# Certificate_sign_tool.md
 
-Table of Contents
 =================
 
+      * [Introduction](#introduction)
+      * [Pull the tools](#pull-the-tools)
+      * [Usage](#usage)
 
 
 
-[TOC]
-
-## Introduction 
+## Introduction
 
 It's a simple shell script which used to generate self-sign certificate 
 
 ## Pull the tools
 
 ```
-git clone git@github.com:sundaxi/CA_tools.git
 ```
 
-## Usage 
+## Usage
 
 check the help command line
 
 ```
-./CA_cert.sh -h
-Usage: CA_cert.sh [option] [file]
         -h|--help : usage for help page
-        -c|--ca: usage to sign self root CA certification
         -p|--private: usage to generate a private key
-        -r|--request: usage to create a CSR request
-        -s|--sign: usage to sign a Certification
-        -s3|--sign3: usage to sign v3 Certification
         -v|--verify: usage to verify a private key
-        -i|--identify: usage to verify a CSR file
-        -k|--check: usage to verify a Certication file
         -t|--trans: usage to trans a private key with pass to no pass
 ```
 
-The configuration file is under the same directory and named CA_config 
 Here comes the sample and you can modify the configuration file based on your requirement 
 
 ```
-############configuration for the server side###########
-##define private Key password
-PASSWORD=1234
-##define the valid days
+############ configuration for the server side###########
+## define private Key password
+## define the valid days
 DAYS=3650
-##define the DN info
-CO_S=CN
-ST_S=BJ
-LO_S=BJ
-OG_S=Centos
-OU_S=Linux
+## define the DN info
 HS_S=yinsun.microsoft.com
-##define the Private Key Path
-P_Key=/etc/pki/CA/private/cakey.pem
-##define the CA Path
-CACERT=/etc/pki/CA/cacert.pem
+## define the Private Key Path
 
-############configuration for the request CSR############
-##define the DN info########
-CO_C=CN
-ST_C=LN
-LO_C=DL
-OG_C=server
-OU_C="Operation System"
-HS_C=server.example.com
+## define the DN info########
 ```
 
-##Create Self Sign certificate
 
-Generate private key
-
-```
-$ cd /CA_tools
-$ ./CA_cert.sh -p
-Create private key in /etc/pki/CA/private/cakey.pem success
-```
-
-Verify the private key 
+**Generate private key**
 
 ```
-$ ./CA_cert.sh -v /etc/pki/CA/private/cakey.pem
-Enter pass phrase for /etc/pki/CA/private/cakey.pem:
+```
+
+**Verify the private key** 
+
+```
 Private-Key: (2048 bit)
 modulus:
     00:d5:d5:a4:6d:85:2c:11:22:e3:c8:43:64:c4:10:
@@ -175,29 +142,19 @@ coefficient:
     85:25:e9:c5:76:d2:52:36
 ```
 
-Gernerate CA certificate 
 
 ```
-$ ./CA_cert.sh -c
-Self Sign ROOT CA in /etc/pki/CA/cacert.pem success
 ```
 
-Check CA certificate 
 
 ```
-$ ./CA_cert.sh -k /etc/pki/CA/cacert.pem
-Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number:
             c6:6a:eb:c2:24:6b:c6:47
     Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C=CN, ST=BJ, L=BJ, O=Centos, OU=Linux Department, CN=yinsun.
 microsoft.com
         Validity
-            Not Before: Sep  7 07:25:24 2017 GMT
-            Not After : Sep  5 07:25:24 2027 GMT
-        Subject: C=CN, ST=BJ, L=BJ, O=Centos, OU=Linux Department, CN=yinsun
 .microsoft.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
@@ -224,12 +181,8 @@ microsoft.com
                 Exponent: 65537 (0x10001)
         X509v3 extensions:
             X509v3 Subject Key Identifier:
-                18:52:B0:72:BA:C8:63:85:37:67:99:78:04:82:AD:59:A5:F6:0A:56
             X509v3 Authority Key Identifier:
-                keyid:18:52:B0:72:BA:C8:63:85:37:67:99:78:04:82:AD:59:A5:F6:
 0A:56
-            X509v3 Basic Constraints:
-                CA:TRUE
     Signature Algorithm: sha256WithRSAEncryption
          3d:6e:c8:7f:49:f1:57:96:8c:20:5c:07:29:39:95:2f:3f:a4:
          19:18:0c:02:14:ce:b4:e2:a8:fa:5c:ae:b7:ea:02:a5:79:b5:
@@ -248,22 +201,14 @@ microsoft.com
          fc:36:d4:05
 ```
 
-Create CSR
 
 ```
-./CA_cert.sh -r
-Create the CSR under /etc/pki/CA/newcerts/cn-yinsun-713.csr success
 ```
 
-Check CSR 
 
 ```
-$ ./CA_cert.sh -i /etc/pki/CA/newcerts/cn-yinsun-713.csr
-Certificate Request:
     Data:
         Version: 0 (0x0)
-        Subject: C=CN, ST=LN, L=DL, O=server, OU=Operation System Department
-, CN=server.example.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (2048 bit)
@@ -307,30 +252,20 @@ Certificate Request:
          f0:6c:e2:c6
 ```
 
-sign the CSR
 
 ```
-$ ./CA_cert.sh -s /etc/pki/CA/newcerts/cn-yinsun-713.csr
-Create the cert file on /etc/pki/CA/newcerts/cn-yinsun-713.csr.crt sucess
 ```
 
-check the certificate 
+**check the certificate** 
 
 ```
-$ ./CA_cert.sh -k /etc/pki/CA/newcerts/cn-yinsun-713.csr.crt
-Certificate:
     Data:
         Version: 1 (0x0)
         Serial Number:
             a9:f0:40:8a:7a:a3:cf:89
     Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C=CN, ST=BJ, L=BJ, O=Centos, OU=Linux Department, CN=yinsun.
 microsoft.com
         Validity
-            Not Before: Sep  7 07:34:11 2017 GMT
-            Not After : Oct  7 07:34:11 2017 GMT
-        Subject: C=CN, ST=LN, L=DL, O=server, OU=Operation System Department
-, CN=server.example.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (2048 bit)
@@ -372,4 +307,3 @@ microsoft.com
          e7:53:11:80
 ```
 
-Then you could get your self-signed certificate with quite simple command
